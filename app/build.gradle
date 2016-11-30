@@ -1,0 +1,72 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.3"
+    defaultConfig {
+        applicationId "com.images.krith.mosaic"
+        minSdkVersion 16
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+ext {
+    supportLibraryVersion = '24.2.1'
+    retrofitVersion = '2.0.2'
+    daggerVersion = '2.5'
+    rxJavaVersion = '1.1.5'
+    rxAndroidVersion = '1.2.0'
+    butterknifeVersion = '8.4.0'
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Dagger 2 dependencies
+    compile "com.google.dagger:dagger:$daggerVersion"
+    apt "com.google.dagger:dagger-compiler:$daggerVersion"
+
+    // View Injections
+    compile "com.jakewharton:butterknife:$butterknifeVersion"
+    apt "com.jakewharton:butterknife-compiler:$butterknifeVersion"
+
+    compile "com.android.support:appcompat-v7:$supportLibraryVersion"
+    compile "com.android.support:design:$supportLibraryVersion"
+    compile "com.android.support:support-v4:$supportLibraryVersion"
+
+    // compile 'javax.inject:javax.inject:1'
+    testCompile 'junit:junit:4.12'
+
+    // Staggered View Library
+    compile 'com.etsy.android.grid:library:1.0.5'
+
+    // Image Downloading Library
+    compile 'com.squareup.picasso:picasso:2.5.2'
+
+    // REST Interactions
+    compile 'com.squareup.okhttp3:okhttp:3.2.0'
+    compile 'com.squareup.okio:okio:1.7.0'
+    compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
+
+    // JSON Parsing
+    compile 'com.google.code.gson:gson:2.6.1'
+    compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+
+    // RxJava
+    compile "io.reactivex:rxandroid:$rxAndroidVersion"
+    compile "io.reactivex:rxjava:$rxJavaVersion"
+
+    // Retrofit RxJava
+    compile "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion"
+}

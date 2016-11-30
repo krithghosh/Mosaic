@@ -57,7 +57,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
         ((App) getApplication()).getComponent().inject(this);
-        getSupportActionBar().setTitle("Gallery");
+        getSupportActionBar().setTitle(R.string.gallery);
         mData = new ArrayList<String>();
         subscription = restApi.getPhotos(Constant.SEARCH_METHOD,
                 Constant.API_KEY, Constant.TAGS, Constant.FORMAT, Constant.NOJSONCALLBACK)
@@ -78,8 +78,8 @@ public class Home extends AppCompatActivity {
                     public void onNext(Photo photo) {
                         progressBar.setVisibility(View.GONE);
                         for (Photo_Info info : photo.getPhotos().getPhoto()) {
-                            mData.add("https://farm" + info.getFarm() + ".staticflickr.com/" + info.getServer() +
-                                    "/" + info.getId() + "_" + info.getSecret() + ".jpg");
+                            mData.add(String.format(getString(R.string.image_url),
+                                    info.getFarm(), info.getServer(), info.getId(), info.getSecret()));
                         }
                         adapter = new StaggeredViewAdapter(Home.this, R.layout.dynamic_image_view, mData);
                         gridView.setGridPadding(4, 0, 4, 0);

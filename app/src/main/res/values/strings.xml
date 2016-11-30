@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Mosaic</string>
+    <string name="image_url">https://farm%1$d.staticflickr.com/%2$s/%3$s_%4$s.jpg</string>
+    <string name="gallery">Gallery</string>
 </resources>
